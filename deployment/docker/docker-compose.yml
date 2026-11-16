@@ -33,11 +33,11 @@ services:
 
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
     container_name: finwise-backend
     env_file:
-      - .env
+      - ../../.env
     environment:
       DATABASE_URL: postgresql+psycopg2://finwise:finwise@postgres:5432/finwise
       REDIS_URL: redis://redis:6379/0
@@ -58,7 +58,7 @@ services:
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
-      - ./app:/app/app
+      - ../../app:/app/app
       - uploads:/app/uploads
     depends_on:
       postgres:
